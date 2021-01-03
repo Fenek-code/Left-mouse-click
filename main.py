@@ -40,11 +40,12 @@ def run(_time, stop, start, amount, status, start_time):
 
     if status:
         pyautogui.click(button='right')  # press the right mouse button
-    run(_time, stop, start, amount, status, start_time)  # do recursion
+
+    return [_time, stop, start, amount, status, start_time]
 
 
 def main():
-    run(
+    a = run(
         int(input("Time between clicks in seconds: \t")),
         input("Stop key: \t"),
         input("Start key: \t"),
@@ -52,7 +53,9 @@ def main():
         False,
         time.time()
     )
-    return
+
+    while True:
+        a = run(a[0], a[1], a[2], a[3], a[4], a[5])
 
 
 if __name__ == "__main__":
